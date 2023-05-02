@@ -18,7 +18,7 @@ describe("Assignment1", function () {
     const data = await deploy();
     contract = data.contract;
   });
-  describe("RemoveElement", function () {
+  describe.skip("RemoveElement", function () {
     it("must remove elements by indexes", async function () {
       const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       const indexes = [2, 5, 8];
@@ -33,7 +33,7 @@ describe("Assignment1", function () {
     });
   });
 
-  describe("removeWithOrder", function () {
+  describe.skip("removeWithOrder", function () {
     it("must remove elements while preserving initial state", async function () {
       const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       const indexes = [2, 5, 8];

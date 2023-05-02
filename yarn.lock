@@ -3474,7 +3474,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat-gas-reporter@npm:^1.0.8":
+"hardhat-gas-reporter@npm:^1.0.9":
   version: 1.0.9
   resolution: "hardhat-gas-reporter@npm:1.0.9"
   dependencies:
@@ -6014,7 +6014,7 @@ __metadata:
     chai: ^4.2.0
     ethers: ^5.4.7
     hardhat: ^2.12.7
-    hardhat-gas-reporter: ^1.0.8
+    hardhat-gas-reporter: ^1.0.9
     mocha: ^10.2.0
     solidity-coverage: ^0.8.0
     ts-node: ">=8.0.0"
