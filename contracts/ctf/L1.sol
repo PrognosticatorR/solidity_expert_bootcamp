@@ -18,6 +18,25 @@ contract Level_1_Solution {
         return result;
     }
 
+    function solution3(uint256[2][2] calldata x, uint256[2][2] calldata y)
+        external
+        pure
+        returns (uint256[2][2] memory)
+    {
+        uint256[2][2] memory result;
+        assembly {
+            let freeMemoryPointer := add(result, 64)
+            mstore(freeMemoryPointer, add(calldataload(add(x, 0)), calldataload(add(y, 0))))
+            freeMemoryPointer := add(freeMemoryPointer, 32)
+            mstore(freeMemoryPointer, add(calldataload(add(x, 32)), calldataload(add(y, 32))))
+            freeMemoryPointer := add(freeMemoryPointer, 32)
+            mstore(freeMemoryPointer, add(calldataload(add(x, 64)), calldataload(add(y, 64))))
+            freeMemoryPointer := add(freeMemoryPointer, 32)
+            mstore(freeMemoryPointer, add(calldataload(add(x, 96)), calldataload(add(y, 96))))
+        }
+        return result;
+    }
+
     function solution2(uint8[2][2] calldata x, uint8[2][2] calldata y) external pure returns (uint8[2][2] memory) {
         uint8[2][2] memory result;
         result[0][0] = x[0][0] + y[0][0];

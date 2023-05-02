@@ -7,7 +7,7 @@ contract Intro {
         assembly {
             let var := mol
             mstore(0x40, var)
-            return(0x40, 0x60)
+            return(0x40, 32)
         }
     }
 }

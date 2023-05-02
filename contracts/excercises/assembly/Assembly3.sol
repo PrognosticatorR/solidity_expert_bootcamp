@@ -8,7 +8,7 @@ contract SubOverflow {
         assembly {
             let res := sub(x, y)
             if lt(res, x) { mstore(0x40, res) }
-            return(0x40, 0x60)
+            return(0x40, 32)
         }
     }
 }
