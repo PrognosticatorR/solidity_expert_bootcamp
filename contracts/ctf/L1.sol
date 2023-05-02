@@ -18,8 +18,8 @@ contract Level_1_Solution {
         return result;
     }
 
-    function solution2(uint8[2][2] calldata x, uint8[2][2] calldata y) external pure returns (uint8[2][2] memory) {
-        uint8[2][2] memory result;
+    function solution2(uint256[2][2] calldata x, uint256[2][2] calldata y) external pure returns (uint256[2][2] memory) {
+        uint256[2][2] memory result;
         result[0][0] = x[0][0] + y[0][0];
         result[0][1] = x[0][1] + y[0][1];
         result[1][0] = x[1][0] + y[1][0];
