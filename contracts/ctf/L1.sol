@@ -18,23 +18,25 @@ contract Level_1_Solution {
         return result;
     }
 
-    function solution3(uint256[2][2] calldata x, uint256[2][2] calldata y)
-        external
-        pure
-        returns (uint256[2][2] memory)
-    {
-        uint256[2][2] memory result;
+    function solution3(uint256[2][2] calldata, uint256[2][2] calldata) external pure returns (uint256[2][2] memory) {
         assembly {
-            let freeMemoryPointer := add(result, 64)
-            mstore(freeMemoryPointer, add(calldataload(add(x, 0)), calldataload(add(y, 0))))
-            freeMemoryPointer := add(freeMemoryPointer, 32)
-            mstore(freeMemoryPointer, add(calldataload(add(x, 32)), calldataload(add(y, 32))))
-            freeMemoryPointer := add(freeMemoryPointer, 32)
-            mstore(freeMemoryPointer, add(calldataload(add(x, 64)), calldataload(add(y, 64))))
-            freeMemoryPointer := add(freeMemoryPointer, 32)
-            mstore(freeMemoryPointer, add(calldataload(add(x, 96)), calldataload(add(y, 96))))
+            // Matrix visualization:
+            // [32B, 32B]
+            // [32B, 32B] = 128B total
+            // Get free memory pointer. As each elem has 32B size, we will increment freePt by 32 each time.
+            let freePt := mload(0x40)
+            // x starts with an offset of 4B to calldata.
+            // Store x[0][0] + y[0][0] in freePt
+            mstore(freePt, add(calldataload(4), calldataload(132)))
+            // Store x[0][1] + y[0][1] in freePt + 32B
+            mstore(add(freePt, 32), add(calldataload(36), calldataload(164)))
+            // Store x[1][0] + y[1][0] in freePt + 64B
+            mstore(add(freePt, 64), add(calldataload(68), calldataload(196)))
+            // Store x[1][1] + y[1][1] in freePt + 96B
+            mstore(add(freePt, 96), add(calldataload(100), calldataload(228)))
+            // Return the 128B of the array, grabbing from freePt.
+            return(freePt, 128)
         }
-        return result;
     }
 
     function solution2(uint8[2][2] calldata x, uint8[2][2] calldata y) external pure returns (uint8[2][2] memory) {
